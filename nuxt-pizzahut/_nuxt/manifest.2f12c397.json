@@ -1,0 +1,10 @@
+{
+  "name": "Pizza",
+  "short_name": "Pizza",
+  "description": "## Features and Functionality",
+  "icons": [],
+  "start_url": "nuxt-pizzahut/?standalone=true",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "lang": "en"
+}
