@@ -1,13 +1,30 @@
 (function() {
     "use strict";
     // experience and age calculation code
+    function getWords() {
+        var past = new Date("2017-05-01")
+        var curr = new Date()
+        var diff = Math.floor(curr.getTime() - past.getTime());
+        var day = 1000 * 60 * 60 * 24;
+        var days = Math.floor(diff/day);
+        function getPlural(number, word) {
+            return (number === 1 && word.one) || word.other;
+        }
+        var monthCount = Math.floor(days/31);
+        var months = { one: 'month', other: 'months' },
+            years = { one: 'year', other: 'years' },
+            m = monthCount % 12,
+            y = Math.floor(monthCount / 12),
+            result = [];
+        y && result.push(y + ' ' + getPlural(y, years));
+        m && result.push(m + ' ' + getPlural(m, months));
+        return result.join(' and ');
+    }
     const myage = new Date().getFullYear() - 1996; 
-    const myexperienceYrs = new Date().getFullYear() - 2018; 
-    const myexpmonths = new Date().getMonth() + 6;
     document.querySelector("#myage").innerHTML = myage;
     const highlightedItems = document.querySelectorAll(".myexperience");
-    highlightedItems.forEach(function(userItem) {
-        userItem.innerHTML = `${myexperienceYrs}.${myexpmonths} Yrs`;
+    highlightedItems.forEach((userItem) => {
+        userItem.innerHTML = getWords();
     });
     // contact form handling
     var form = document.getElementById("contact-me");
